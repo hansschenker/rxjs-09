@@ -13,9 +13,11 @@ Includes the following features...
 - 07 Broadcasting Operators
 - 08 Error Handling Operators
 - 09 Utility Operators
+- 10 Debug Operators
 
 ## Usage
 
+This Project was created with the help of ChatGPT
 Explanations follow here...
 
 ```
