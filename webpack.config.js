@@ -28,11 +28,15 @@ module.exports = {
     compress: true,
     historyApiFallback: true,
   },
+  resolve: {
+    extensions: ['.tsx', '.ts', '.js'],
+  },
   module: {
     rules: [
       {
         test: /\.ts$/,
         use: 'ts-loader',
+        exclude: /node_modules/,
       },
       {
         test: /\.scss$/,
