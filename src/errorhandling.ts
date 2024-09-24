@@ -1,74 +1,27 @@
-import { Observable, catchError, of, retry, retryWhen, throwError } from "rxjs";
+import { catchError, Observable, OperatorFunction, retry, retryWhen, throwError } from 'rxjs';
 
 
+export type ErrorHandlingStrategyReturnType<K extends string, T> =
+  K extends "catchError" ? OperatorFunction<any, T> :
+  K extends "retry" ? OperatorFunction<any, T> :
+  K extends "retryWhen" ? OperatorFunction<any, T> :
+  K extends "throwError" ? Observable<never> :
+  never;
 
-export type ErrorHandlingStrategy<T> = {
-  name: 'catchError' | 'retry' | 'retryWhen' | 'throwError';
-  returnType: Observable<T>;
-};
-
-export function errorWith<T>(
-  strategy: ErrorHandlingStrategy<T>["name"],
+export function errorWith<K extends string, T>(
+  strategy: K,
   ...args: any[]
-): Observable<T> {
+): ErrorHandlingStrategyReturnType<K, T> {
   switch (strategy) {
     case "catchError":
-      return of(null).pipe(catchError(args[0])) as Observable<T>;
+      return catchError(args[0]) as unknown as ErrorHandlingStrategyReturnType<K, T>;
     case "retry":
-      return of(null).pipe(retry(args[0])) as Observable<T>;
+      return retry(args[0]) as unknown as ErrorHandlingStrategyReturnType<K, T>;
     case "retryWhen":
-      return of(null).pipe(retryWhen(args[0])) as Observable<T>;
+      return retryWhen(args[0]) as unknown as ErrorHandlingStrategyReturnType<K, T>;
     case "throwError":
-      return throwError(args[0]) as Observable<T>;
+      return throwError(args[0]) as unknown as ErrorHandlingStrategyReturnType<K, T>;
     default:
       throw new Error(`Unknown strategy: ${strategy}`);
   }
 }
-
-// export type ErrorHandlingStrategy<T> =
-//   | {
-//       name: "catchError";
-//       description: "Catches errors and returns an Observable";
-//       returnType: Observable<T>;
-//     }
-//   | {
-//       name: "retry";
-//       description: "Retries the source Observable a specified number of times, default 1";
-//       returnType: Observable<T>;
-//     }
-//   | {
-//       name: "retryWhen";
-//       description: "Retries the source Observable based on a custom retry strategy.";
-//       returnType: Observable<T>;
-//     }
-//   | {
-//       name: "throwError";
-//       description: "Creates an Observable that emits an error.";
-//       returnType: Observable<never>;
-//     };
-
-// export function errorWith<T>(
-//   strategy: ErrorHandlingStrategy<T>["name"],
-//   ...args: any[]
-// ): ErrorHandlingStrategy<T>["returnType"] {
-//   switch (strategy) {
-//     case "catchError":
-//       return catchError(
-//         args[0]
-//       ) as unknown as ErrorHandlingStrategy<T>["returnType"];
-//     case "retry":
-//       return retry(
-//         args[0]
-//       ) as unknown as ErrorHandlingStrategy<T>["returnType"];
-//     case "retryWhen":
-//       return retryWhen(
-//         args[0]
-//       ) as unknown as ErrorHandlingStrategy<T>["returnType"];
-//     case "throwError":
-//       return throwError(
-//         args[0]
-//       ) as unknown as ErrorHandlingStrategy<T>["returnType"];
-//     default:
-//       throw new Error(`Unknown strategy: ${strategy}`);
-//   }
-// }
