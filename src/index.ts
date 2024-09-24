@@ -56,8 +56,9 @@ import { createWith } from "./creation";
 // const of$ = createWith("of", "Hello, world!") as Observable<string>;
 // of$.subscribe(console.log);
 
+const of$ = createWith("timer", 1000, 1000) as Observable<number>;
 // const timer$ = createWith("timer", 1000, 1000) as Observable<number>
-// timer$.pipe(take(5)).subscribe(console.log)
+ of$.pipe(take(5)).subscribe(console.log)
 
 // const from$ = createWith("from", [1, 2, 3]) as Observable<number>;
 // from$.subscribe(console.log);

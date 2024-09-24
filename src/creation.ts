@@ -14,16 +14,36 @@ export type CreationStrategyReturnType<K extends string> =
   K extends "throwError" ? Observable<never> :
   never;
 
-export type CreationStrategy =
+  export type CreationStrategy =
+  /** @subcategory generate number values */
   | { name: "timer"; description: string; returnType: Observable<number> }
+  /** @subcategory values from simple values, objects or arrays */
   | { name: "from"; description: string; returnType: Observable<any> }
+  /** @subcategory values from simple values, objects or arrays */
   | { name: "of"; description: string; returnType: Observable<any> }
+  /** @subcategory generate number values */
   | { name: "interval"; description: string; returnType: Observable<number> }
+  /** @subcategory handling DOM events */
   | { name: "fromEvent"; description: string; returnType: Observable<any> }
+  /** @subcategory web context */
   | { name: "ajax"; description: string; returnType: Observable<AjaxResponse<any>> }
+  /** @subcategory run observable on each subscription */
   | { name: "defer"; description: string; returnType: Observable<any> }
+  /** @subcategory conditional logic */
   | { name: "iif"; description: string; returnType: Observable<any> }
+  /** @subcategory error handling */
   | { name: "throwError"; description: string; returnType: Observable<never> };
+  
+// export type CreationStrategy =
+//   | { name: "timer"; description: string; returnType: Observable<number> }
+//   | { name: "from"; description: string; returnType: Observable<any> }
+//   | { name: "of"; description: string; returnType: Observable<any> }
+//   | { name: "interval"; description: string; returnType: Observable<number> }
+//   | { name: "fromEvent"; description: string; returnType: Observable<any> }
+//   | { name: "ajax"; description: string; returnType: Observable<AjaxResponse<any>> }
+//   | { name: "defer"; description: string; returnType: Observable<any> }
+//   | { name: "iif"; description: string; returnType: Observable<any> }
+//   | { name: "throwError"; description: string; returnType: Observable<never> };
 
 // CreateWith function that maps the strategy to the correct return type
 export function createWith<K extends CreationStrategy["name"]>(
