@@ -1,24 +1,25 @@
 {
   "name": "rxjs-09",
-  "version": "0.0.9",
-  "description": "",
+  "version": "0.1.1",
+  "description": "Rxjs 09 will reduce the api surface of RxJS and make it easier to learn, use, and debug.",
   "main": "index.js",
-  "scripts": {
-    "build": "webpack",
-    "dev": "webpack serve"
-  },
-  "keywords": [],
-  "author": "",
+  "types": "dist/index.d.ts",
+  "keywords": ["rxjs", "operator", "observable", "typescript", "webpack"],
+  "author": "hans.schenker@windowslive.com",
   "license": "ISC",
   "devDependencies": {
-    "ts-loader": "^9.4.2",
-    "typescript": "^5.0.4",
-    "webpack": "^5.70.0",
-    "webpack-bundle-analyzer": "^4.5.0",
-    "webpack-cli": "^4.9.2",
-    "webpack-dev-server": "^4.7.4"
+    "typescript": "^5.0.4"
   },
+  "scripts": {
+    "build": "tsc",  
+    "start": "ts-node src/index.ts"
+  },
+  "files": [
+    "dist"
+  ],
   "dependencies": {
-    "rxjs": "^7.8.1"
+    "@types/node": "^22.7.5",
+    "rxjs": "^7.8.1",
+    "ts-node": "^10.9.2"
   }
 }

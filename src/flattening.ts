@@ -1,32 +1,6 @@
 import { Observable, switchMap, mergeMap, concatMap, exhaustMap, switchMapTo, mergeAll, concatAll, exhaustAll, ObservableInput, OperatorFunction } from 'rxjs';
 
 
-// export type FlattenType = "switchMap" | "mergeMap" | "concatMap" | "exhaustMap" | "mergeAll" | "concatAll" | "exhaustAll";
-
-// export function flattenWith<T>(type: FlattenType, project?: (value: T) => ObservableInput<any>): (source$: Observable<T>) => Observable<any> {
-//   switch (type) {
-//     case "switchMap":
-//       if (!project) throw new Error(`Project function is required for ${type}`);
-//       return (source$) => source$.pipe(switchMap(project));
-//     case "mergeMap":
-//       if (!project) throw new Error(`Project function is required for ${type}`);
-//       return (source$) => source$.pipe(mergeMap(project));
-//     case "concatMap":
-//       if (!project) throw new Error(`Project function is required for ${type}`);
-//       return (source$) => source$.pipe(concatMap(project));
-//     case "exhaustMap":
-//       if (!project) throw new Error(`Project function is required for ${type}`);
-//       return (source$) => source$.pipe(exhaustMap(project));
-//     case "mergeAll":
-//       return (source$) => source$.pipe(mergeAll());
-//     case "concatAll":
-//       return (source$) => source$.pipe(concatAll());
-//     case "exhaustAll":
-//       return (source$) => source$.pipe(exhaustAll());
-//     default:
-//       throw new Error(`Unknown flatten type: ${type}`);
-//   }
-// }
 
 export type FlattenType = "switchMap" | "mergeMap" | "concatMap" | "exhaustMap" | "mergeAll" | "concatAll" | "exhaustAll";
 
