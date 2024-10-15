@@ -1,6 +1,6 @@
 {
   "name": "rxjs-09",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "Rxjs 09 will reduce the api surface of RxJS and make it easier to learn, use, and debug.",
   "main": "index.js",
   "types": "dist/index.d.ts",
