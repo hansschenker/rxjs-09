@@ -3,9 +3,11 @@
     "target": "ES6",
     "module": "CommonJS",
     "declaration": true,
+    "declarationMap": true, // Optional, if you want declaration source maps
     "outDir": "./dist",
-    "strict": true,
-    "esModuleInterop": true
+    "rootDir": "./src",
+    "esModuleInterop": true,
+    "strict": true
   },
   "include": ["src/**/*"]
 }

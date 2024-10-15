@@ -1,0 +1,4 @@
+import { Observable } from "rxjs";
+export type CombinationStrategyReturnType<K extends string, T, R = any> = K extends "combineLatest" ? Observable<R[]> : K extends "concat" ? Observable<R> : K extends "merge" ? Observable<R> : K extends "forkJoin" ? Observable<R[]> : K extends "race" ? Observable<R> : K extends "zip" ? Observable<R[]> : K extends "window" ? Observable<Observable<T>> : K extends "windowCount" ? Observable<Observable<T>> : K extends "windowTime" ? Observable<Observable<T>> : K extends "windowToggle" ? Observable<Observable<T>> : K extends "windowWhen" ? Observable<Observable<T>> : never;
+export declare function combineWith<K extends string, T, R>(strategy: K, ...args: any[]): CombinationStrategyReturnType<K, T, R>;
+//# sourceMappingURL=combination.d.ts.map

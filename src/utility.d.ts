@@ -1,0 +1,4 @@
+import { MonoTypeOperatorFunction, OperatorFunction } from 'rxjs';
+export type UtilityStrategyReturnType<K extends string, T> = K extends "tap" ? MonoTypeOperatorFunction<T> : K extends "dematerialize" ? MonoTypeOperatorFunction<T> : K extends "materialize" ? MonoTypeOperatorFunction<any> : K extends "observeOn" ? MonoTypeOperatorFunction<T> : K extends "subscribeOn" ? MonoTypeOperatorFunction<T> : K extends "toArray" ? OperatorFunction<T, T[]> : K extends "expand" ? MonoTypeOperatorFunction<T> : K extends "delay" ? MonoTypeOperatorFunction<T> : K extends "delayWhen" ? MonoTypeOperatorFunction<T> : never;
+export declare function helpWith<K extends string, T>(strategy: K, ...args: any[]): UtilityStrategyReturnType<K, T>;
+//# sourceMappingURL=utility.d.ts.map
